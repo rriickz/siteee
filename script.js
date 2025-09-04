@@ -16,7 +16,7 @@ document.getElementById("calcForm").addEventListener("submit", function(e) {
   let alerta = "";
 
   if (imc < 18.5) { 
-    classificacao = "Abaixo do peso";
+    classificacao = "💀 Magreza perigosa, bora comer mais!";
     classe = "baixo";
     alerta = "💀 Magreza perigosa, bora comer mais!";
   }
