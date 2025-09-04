@@ -1,36 +1,46 @@
 document.getElementById("calcForm").addEventListener("submit", function(e) {
-  e.preventDefault(); // impede o reload da página
+  e.preventDefault();
 
-  const altura = document.getElementById("altura").value / 100; // converte cm para m
+  const altura = document.getElementById("altura").value / 100;
   const peso = document.getElementById("peso").value;
-  const sexo = document.getElementById("sexo").value;
 
   if (!altura || !peso) {
-    document.getElementById("resultado").innerHTML = "<p>Preencha todos os campos!</p>";
+    document.getElementById("resultado").innerHTML = "<p>⚠️ Preencha todos os campos!</p>";
     return;
   }
 
-  // cálculo do IMC
   const imc = (peso / (altura * altura)).toFixed(2);
 
-  // cálculo da massa magra (fórmula de Boer)
-  let massaMagra;
-  if (sexo === "masc") {
-    massaMagra = (0.407 * peso) + (0.267 * (altura * 100)) - 19.2;
-  } else {
-    massaMagra = (0.252 * peso) + (0.473 * (altura * 100)) - 48.3;
+  let classificacao = "";
+  let classe = "";
+  let alerta = "";
+
+  if (imc < 18.5) { 
+    classificacao = "Abaixo do peso";
+    classe = "baixo";
+    alerta = "💀 Magreza perigosa, bora comer mais!";
+  }
+  else if (imc < 25) { 
+    classificacao = "Peso normal";
+    classe = "normal";
+    alerta = "✅ Mandou bem, tá na faixa!";
+  }
+  else if (imc < 30) { 
+    classificacao = "Sobrepeso";
+    classe = "sobre";
+    alerta = "⚠️ Se cuida, dá pra ajustar!";
+  }
+  else { 
+    classificacao = "Obesidade";
+    classe = "obeso";
+    alerta = "🔥 Perigo! O coração tá gritando!";
   }
 
-  // classificação IMC
-  let classificacao = "";
-  if (imc < 18.5) classificacao = "Abaixo do peso";
-  else if (imc < 25) classificacao = "Peso normal";
-  else if (imc < 30) classificacao = "Sobrepeso";
-  else classificacao = "Obesidade";
-
-  // exibir resultados
-  document.getElementById("resultado").innerHTML = `
+  const resultadoDiv = document.getElementById("resultado");
+  resultadoDiv.className = "resultado " + classe;
+  resultadoDiv.innerHTML = `
+    <h2>📊 Resultado</h2>
     <p><b>IMC:</b> ${imc} (${classificacao})</p>
-    <p><b>Massa Magra:</b> ${massaMagra.toFixed(2)} kg</p>
+    <p>${alerta}</p>
   `;
 });

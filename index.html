@@ -2,30 +2,27 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Calculadora IMC e Massa Magra</title>
+  <title>Calculadora de IMC</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="card">
-    <h1>Calculadora de IMC e Massa Magra</h1>
-    <form id="calcForm">
+  <div class="container">
+    <h1>⚡ Calculadora de IMC ⚡</h1>
+    <p class="sub">Descubra se você está saudável ou precisa dar uma ajustada 💪</p>
+
+    <form id="calcForm" class="form">
       <label>Altura (cm):</label>
-      <input type="number" id="altura" required>
+      <input type="number" id="altura" placeholder="Ex: 175" required>
 
       <label>Peso (kg):</label>
-      <input type="number" id="peso" required>
+      <input type="number" id="peso" placeholder="Ex: 70" required>
 
-      <label>Sexo:</label>
-      <select id="sexo" required>
-        <option value="masc">Masculino</option>
-        <option value="fem">Feminino</option>
-      </select>
-
-      <button type="submit">Calcular</button>
+      <button type="submit">Calcular 🚀</button>
     </form>
 
-    <div id="resultado"></div>
+    <div id="resultado" class="resultado"></div>
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>
